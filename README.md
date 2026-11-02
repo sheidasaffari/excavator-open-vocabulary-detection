@@ -24,6 +24,13 @@ does not replace negative evidence for learning a sharper category boundary.
 
 ![Final multi-seed result](results/final_multiseed/final_random100k_vs_no_adaptation.png)
 
+**Interpretation.** Positive-only synthetic adaptation improves excavator recall but
+does not reliably sharpen the excavator/non-excavator category boundary. This
+outcome is expected because Excavision provides positive excavator supervision but
+no realistic hard negatives: the model learns to assign higher confidence to
+excavators, but receives no new evidence teaching it to reject backhoe loaders,
+wheel loaders, isolated attachments, and other confusing objects.
+
 ## Main findings
 
 1. **The two models fail differently.** Grounding DINO has strong excavator recall
