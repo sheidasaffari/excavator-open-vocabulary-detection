@@ -1,9 +1,11 @@
 # Excavision for Open-Vocabulary Excavator Detection
 
-This repository studies how two open-vocabulary detectors—Grounding DINO and
-YOLO-World—behave on the industrial category **excavator**, diagnoses
-their distinct failure modes, and tests whether positive-only synthetic Excavision
-data can improve YOLO-World without retraining its full detector.
+This study asks whether controlled synthetic data can improve the performance of
+open-vocabulary foundation detectors on a rare industrial category. We evaluated
+two widely used models, Grounding DINO and YOLO-World, on real excavator datasets
+and tested YOLO-World adaptation with multiple subsets of our one-million-image
+Excavision dataset to determine what synthetic supervision improves—and what it
+cannot fix by itself.
 
 **Excavision** is a **1.09-million-frame multimodal synthetic benchmark dataset**
 for excavator perception, providing controlled variation in machine configuration,
@@ -11,10 +13,14 @@ camera viewpoint, articulation, appearance, lighting, and scene conditions toget
 with aligned annotations. The dataset can be searched interactively by render
 condition in the [Excavision Hugging Face Explorer](https://huggingface.co/spaces/Sheida1/excavision-explorer).
 
-The central result is deliberately narrow: selective YOLO-World adaptation with
-100,000 randomly sampled Excavision images consistently improves fixed-threshold
-recall and F1 across three real-image sources, but it does **not** consistently
-improve AP or confuser rejection. Grounding DINO adaptation has not been performed yet.
+The models exhibited different failure modes: Grounding DINO achieved strong
+excavator recall but frequently confused related machines and detached components,
+whereas YOLO-World often localized excavators correctly but assigned them scores
+below the operating threshold. Selective YOLO-World adaptation with 100,000
+randomly sampled Excavision images consistently improved fixed-threshold recall and
+F1 across three real-image sources, but did **not** consistently improve AP or
+confuser rejection—showing that positive synthetic data improves sensitivity but
+does not replace negative evidence for learning a sharper category boundary.
 
 ![Final multi-seed result](results/final_multiseed/final_random100k_vs_no_adaptation.png)
 
