@@ -10,7 +10,7 @@ independent real-world test sources.
 |---|---|---|---|
 | **MOCS** (`data/mocs/`) | **development** (prompt/threshold calibration) | 1010 | YOLO txt, single class `excavator` |
 | **ACID** (`data/acid/`) | held-out test | 605 | YOLO txt, single class `excavator` |
-| **CIS** (`data/cis/`) | held-out test | 2000 (reference 1000 + test 1000, combined into one 2000-image held-out set -- ) | YOLO txt, single class `excavator` |
+| **CIS** (`data/cis/`) | held-out test | 2000 (reference 1000 + test 1000, combined into one 2000-image held-out set ) | YOLO txt, single class `excavator` |
 
 **Decision**: MOCS chosen as the development set (reasonably sized, well-known
 public benchmark). ACID and CIS are the two **untouched** held-out test sets.
