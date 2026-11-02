@@ -5,6 +5,12 @@ YOLO-World—behave on the long-tail industrial category **excavator**, diagnose
 their distinct failure modes, and tests whether positive-only synthetic Excavision
 data can improve YOLO-World without retraining its full detector.
 
+**Excavision** is a **1.09-million-frame multimodal synthetic benchmark dataset**
+for excavator perception, providing controlled variation in machine configuration,
+camera viewpoint, articulation, appearance, lighting, and scene conditions together
+with aligned annotations. The dataset can be searched interactively by render
+condition in the [Excavision Hugging Face Explorer](https://huggingface.co/spaces/Sheida1/excavision-explorer).
+
 The central result is deliberately narrow: selective YOLO-World adaptation with
 100,000 randomly sampled Excavision images consistently improves fixed-threshold
 recall and F1 across three real-image sources, but it does **not** consistently
