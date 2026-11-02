@@ -1,7 +1,7 @@
 # Excavision for Open-Vocabulary Excavator Detection
 
 This repository studies how two open-vocabulary detectors—Grounding DINO and
-YOLO-World—behave on the long-tail industrial category **excavator**, diagnoses
+YOLO-World—behave on the industrial category **excavator**, diagnoses
 their distinct failure modes, and tests whether positive-only synthetic Excavision
 data can improve YOLO-World without retraining its full detector.
 
@@ -14,7 +14,7 @@ condition in the [Excavision Hugging Face Explorer](https://huggingface.co/space
 The central result is deliberately narrow: selective YOLO-World adaptation with
 100,000 randomly sampled Excavision images consistently improves fixed-threshold
 recall and F1 across three real-image sources, but it does **not** consistently
-improve AP or confuser rejection. Grounding DINO adaptation has not been performed.
+improve AP or confuser rejection. Grounding DINO adaptation has not been performed yet.
 
 ![Final multi-seed result](results/final_multiseed/final_random100k_vs_no_adaptation.png)
 
