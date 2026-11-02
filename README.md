@@ -140,15 +140,36 @@ when the private datasets and prediction files are available.
 
 ## Grounding DINO adaptation — future work
 
-No Grounding DINO fine-tuning result is claimed here.
+No Grounding DINO fine-tuning result is claimed here. Its principal weakness in our
+evaluation was not failure to find excavators, but an overly broad decision boundary:
+the model frequently labelled visually related construction machines and detached
+excavator components as complete excavators. Improving performance therefore means
+reducing these false positives while preserving its already strong excavator recall.
 
-- [ ] Construct an adaptation-only set of whole-machine hard negatives (loaders,
-  backhoes, bulldozers, trucks, and cranes).
-- [ ] Add isolated buckets/attachments as part-vs-whole counterfactual negatives.
-- [ ] Freeze a parameter-efficient adaptation protocol before accessing held-out
-  positive-control or confuser results.
-- [ ] Measure excavator recall, confuser FPR, duplicate/fragmented detections, and
-  retention on general open-vocabulary categories.
+This correction requires **realistic hard-negative supervision**—images that contain
+confusing non-excavator machines or excavator-like parts but contain no valid
+excavator instance. Excavision currently provides positive excavator renders and
+does not contain realistic examples of these negative categories. Additional
+positive synthetic excavators alone therefore cannot teach the model where the
+excavator/non-excavator boundary should lie.
+
+Future work will collect a separate, adaptation-only negative dataset containing:
+
+- whole-machine confusers such as backhoe loaders, wheel loaders, bulldozers,
+  cranes, trucks, and other construction equipment;
+- isolated buckets, booms, arms, and attachments to address part-versus-whole
+  confusion; and
+- construction-site clutter and equipment-free scenes to measure background
+  rejection.
+
+These negatives should be combined with Excavision positives and adapted through a
+lightweight strategy targeting Grounding DINO's region–text alignment or detection
+head, rather than immediately fine-tuning the complete backbone. The protocol must
+be frozen before accessing the held-out evaluations and should measure the trade-off
+between excavator recall and confuser false-positive rate, as well as duplicate or
+fragmented detections and retention on general open-vocabulary categories. This
+would test whether positive synthetic coverage and realistic negative boundary
+supervision provide complementary benefits.
 
 ## Repository contents
 
