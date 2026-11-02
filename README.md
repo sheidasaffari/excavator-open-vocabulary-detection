@@ -106,12 +106,23 @@ localization branch were frozen. Training updated the open-vocabulary scoring he
 using single-class Excavision positives. The locked recipe used 30 epochs, AdamW,
 batch size 64, 640-pixel inputs, and the selected prompt `construction excavator`.
 
-An exploratory seed-0 scale sweep compared 5K, 20K, 100K, and 500K random subsets.
-The curve was non-monotonic: 5K and 100K gave similar MOCS gains, so the experiment
-does not support a “more synthetic data is always better” claim. The 100K condition
-was frozen before confirmatory multi-seed evaluation. Curated subsets were also
-audited internally but showed no consistent advantage and are not part of the main
-claim.
+An exploratory seed-0 scale sweep compared 5K, 20K, 100K, and 500K random subsets
+on the MOCS development set. Under the predeclared selection rule—maximize
+AP50:95, using recall only to break a tie—100K was selected because it achieved the
+highest AP50:95 (0.587), and was then frozen before confirmatory multi-seed and
+held-out evaluation. This was a protocol-valid model-selection decision, not proof
+that 100K is the universally optimal or most data-efficient size: 5K was close in
+AP50:95, while 20K produced the highest seed-0 recall and F1. The non-monotonic
+curve therefore does not support a “more synthetic data is always better” claim.
+
+![YOLO-World random-subset scale sweep on MOCS](results/scale_study/mocs_random_vs_no_adaptation_ap50_ap5095.png)
+
+The scale sweep was used only for development-set selection; the later three-seed
+evaluation tests the frozen 100K choice rather than reselecting it from held-out
+results. Curated subsets were also audited internally but showed no consistent
+advantage and are not part of the main claim. Exact scale-sweep values and the full
+interpretation are available in
+[`results/scale_study/REPORT.md`](results/scale_study/REPORT.md).
 
 ### Accepted three-seed results
 
