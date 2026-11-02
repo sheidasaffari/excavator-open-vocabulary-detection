@@ -1,0 +1,16 @@
+figure,image_id,visible_class,failure_or_slice,selection_evidence,score,n_or_seeds
+grounding_dino_confusion,backhoe_loader_11,Backhoe loader,Whole-machine category confusion,negative,0.9354103803634644,1
+grounding_dino_confusion,bulldozer_07,Bulldozer,Whole-machine category confusion,negative,0.9151848554611206,1
+grounding_dino_confusion,wheel_loader_04,Wheel loader,Whole-machine category confusion,negative,0.9238660931587219,1
+grounding_dino_confusion,isolated_attachment_01,Detached boom and bucket,Part-versus-whole confusion,negative,0.931613028049469,1
+grounding_dino_confusion,crane_pilot_01,Mobile crane,Whole-machine category confusion,negative,0.8121002316474915,1
+yolo_world_failure,0008085,excavator,Near-threshold suppression,gt_index=1; best_iou=0.9900,0.24758152663707733,1
+yolo_world_failure,0006277,excavator,Small/partial instance,gt_index=3; best_iou=0.9872,0.010387152433395386,1
+yolo_world_failure,0006018,excavator,Localization failure,gt_index=3; best_iou=0.4888,0.037191007286310196,1
+yolo_world_failure,0004214,excavator,Multi-instance miss,gt_index=2; best_iou=0.1831,0.0068361167795956135,1
+yolo_world_failure,0001575,excavator,Small/distant proposal failure,gt_index=0; best_iou=0.2170,0.16623027622699738,1
+yolo_world_recovered,0005609,excavator,Typical earthmoving scene,dataset=mocs_dev; gt_index=0; all_3_seeds=true,0.123213->0.617231,3
+yolo_world_recovered,0001929,excavator,Multi-excavator scene,dataset=mocs_dev; gt_index=0; all_3_seeds=true,0.012363->0.509599,3
+yolo_world_recovered,excavator_003025,excavator,Unusual viewpoint and attachment,dataset=cis_test; gt_index=0; all_3_seeds=true,0.023455->0.522478,3
+yolo_world_recovered,pc3_076,excavator,Rear/partial appearance,dataset=positive_control; gt_index=0; all_3_seeds=true,0.046950->0.517173,3
+yolo_world_recovered,pc3_108,excavator,"Small, distant excavator",dataset=positive_control; gt_index=0; all_3_seeds=true,0.087502->0.289265,3

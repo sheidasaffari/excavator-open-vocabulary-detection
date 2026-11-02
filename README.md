@@ -71,6 +71,21 @@ prompt. These complementary results explain why a single headline AP value is no
 enough. Full diagnostic details are in
 [`docs/error_decomposition.md`](docs/error_decomposition.md).
 
+### Qualitative examples
+
+The Grounding DINO panels are drawn from the frozen negative/confuser set. Because
+these images contain no excavator, every red box is a false detection and the
+ground truth is explicitly marked as negative. The five examples span four
+whole-machine confusions and one part-versus-whole confusion.
+
+![Grounding DINO category-confusion examples](results/failure_cases/grounding_dino_confusion_examples.png)
+
+The YOLO-World panels use MOCS ground-truth boxes (green) and the best candidate
+retained at the low prediction floor (red). They separate near-threshold and severe
+under-scoring from localization, multi-instance, and small/distant proposal failures.
+
+![YOLO-World zero-shot failure examples](results/failure_cases/yolo_world_failure_examples.png)
+
 ## YOLO-World adaptation
 
 The adaptation is **selective fine-tuning, not LoRA**. The backbone, neck, and
@@ -100,6 +115,23 @@ prediction hashes for every evaluated dataset. The accepted outputs are under
 were rejected after discovering identical effective data-order trajectories; they
 are intentionally excluded from this repository.
 
+### Detections recovered after adaptation
+
+The examples below were extracted with a fixed rule: the no-adaptation model had an
+IoU≥0.50 candidate below the 0.25 operating threshold, while every one of the three
+Random-100K seeds produced an IoU≥0.50 detection at or above 0.25. Seed 0 is shown
+for visual comparison; the caption in each adapted panel reports all three scores.
+These are illustrative cases consistent with the aggregate recall result, not an
+additional independent evaluation.
+
+![YOLO-World detections recovered after adaptation](results/failure_cases/yolo_world_recovered_after_adaptation.png)
+
+Selection provenance and exact image identifiers are recorded in
+[`failure_case_manifest.csv`](results/failure_cases/failure_case_manifest.csv). The
+figures can be regenerated locally with
+[`build_failure_case_figures.py`](scripts/visualization/build_failure_case_figures.py)
+when the private datasets and prediction files are available.
+
 ## Grounding DINO adaptation — future work
 
 No Grounding DINO fine-tuning result is claimed here.
@@ -121,6 +153,7 @@ docs/                    Evaluation, adaptation, and error-analysis protocols
 results/                 Accepted aggregate tables and publication figures
 scripts/evaluation/      Zero-shot inference and common single-class evaluation
 scripts/adaptation/      Selective YOLO-World training and evaluation
+scripts/visualization/   Reproducible qualitative failure/recovery figures
 ```
 
 ## Reproducing the workflow
