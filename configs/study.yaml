@@ -1,0 +1,18 @@
+prompt:
+  grounding_dino: "excavator."
+  yolo_world_canonical: "excavator"
+  yolo_world_selected: "construction excavator"
+evaluation:
+  prediction_floor: 0.001
+  operating_threshold: 0.25
+  image_size: 640
+  nms_iou: 0.70
+  max_detections: 300
+adaptation:
+  arm: score_head
+  epochs: 30
+  batch_size: 64
+  optimizer: AdamW
+  learning_rate: 0.001
+  seeds: [0, 1, 2]
+  selected_random_subset_size: 100000

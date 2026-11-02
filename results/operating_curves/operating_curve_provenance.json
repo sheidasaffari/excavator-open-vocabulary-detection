@@ -1,0 +1,45 @@
+{
+  "positive_manifest": {
+    "path": "./positive_control/manifest_final.csv",
+    "sha256": "cc7549259426a4518d4a31abdf5cd729c95c2b585659a62127886317fc7ce48f"
+  },
+  "confuser_manifest": {
+    "path": "./confuser_set/manifest_corrected.csv",
+    "sha256": "7b8e02c02c7f29b317bc38a91ae103474ab9978275cc14a531cefe8d0419491c"
+  },
+  "grounding_dino": {
+    "positive_predictions": {
+      "path": "./predictions/grounding_dino__poscontrol__canonical_floor001.json",
+      "sha256": "5fff58d18b68ca6809617356aac6a791beda8cc8cbfe34e57a4d6d556c8bdb19"
+    },
+    "confuser_predictions": {
+      "path": "./predictions/grounding_dino__confuser__canonical_floor001.json",
+      "sha256": "2ab6fa64d213557e8b49d24f064ab4ab662ffccc6ad2ac2456f82e255bde38e3"
+    },
+    "minimum_valid_score": 0.01
+  },
+  "yolo_world_canonical": {
+    "positive_predictions": {
+      "path": "./predictions/yolo_world__poscontrol__canonical.json",
+      "sha256": "1f1fdd7c225085a201fe212b7095e9143316bb2c4954a30e71c9747caf10e73c"
+    },
+    "confuser_predictions": {
+      "path": "./predictions/yolo_world__confuser__canonical.json",
+      "sha256": "e0cde5f442e0f31e8bc83acf8b87aed5bd4a19be6e9275b4488d6dd663e6bd82"
+    },
+    "minimum_valid_score": 0.001
+  },
+  "yolo_world_selected": {
+    "positive_predictions": {
+      "path": "./predictions/yolo_world__poscontrol__selected.json",
+      "sha256": "9181788c6d1b67299daedd61379842d9e3d18dc2993e1a5e27baf59bd9dbe4dc"
+    },
+    "confuser_predictions": {
+      "path": "./predictions/yolo_world__confuser__selected.json",
+      "sha256": "70a43d1b743e31ff2eedda9a6f675254d97afd996ad0e14963b1b8a9279a06f9"
+    },
+    "minimum_valid_score": 0.001
+  },
+  "generated_at_utc": "2026-10-30T13:51:13.153140+00:00",
+  "metric_definition": "score-descending greedy one-to-one matching at IoU >= 0.50"
+}

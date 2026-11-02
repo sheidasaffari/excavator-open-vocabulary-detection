@@ -1,0 +1,105 @@
+{
+  "created_utc": "2026-11-02T05:55:39.213499+00:00",
+  "criterion": "Three unique model-tensor and prediction hashes per family and dataset",
+  "passed": true,
+  "checks": {
+    "curated": {
+      "unique_model_tensor_hashes": 3,
+      "unique_prediction_hashes": {
+        "mocs_dev": 3,
+        "cis_test": 3,
+        "positive_control": 3,
+        "confuser": 3
+      }
+    },
+    "random": {
+      "unique_model_tensor_hashes": 3,
+      "unique_prediction_hashes": {
+        "mocs_dev": 3,
+        "cis_test": 3,
+        "positive_control": 3,
+        "confuser": 3
+      }
+    }
+  },
+  "records": [
+    {
+      "family": "curated",
+      "seed": 0,
+      "checkpoint": "./adaptation/runs_scale_curated_vs_random/yoloworld_scale_curated_100k_score_head_seed0/weights/best.pt",
+      "checkpoint_file_sha256": "72b1eeee307661396eb23d119241af47ca1c3ce2a319869c4d84b1c6310e3f42",
+      "model_tensor_sha256": "859790ddea4992f4bce9b19119534b013ef782faa00cc12d44ce1950227bf9c2",
+      "prediction_sha256": {
+        "mocs_dev": "2c3f3410ea5bbd176bcee613b017262df5b4e70f246878d75ede8c65a8ae45e9",
+        "cis_test": "849ec779ee93d792d3c792004c862a5bf25909330cd2dab34ef4d8b50197c98c",
+        "positive_control": "ada76c54bfe27a16d8da0a831bef00d58744576d62b4336d7b70a7604b2ec80c",
+        "confuser": "aef59da2b4edb1b822e8fb568ba3027b81f856ed0e57904fb0b5eaae537ffe63"
+      }
+    },
+    {
+      "family": "curated",
+      "seed": 1,
+      "checkpoint": "./adaptation/runs_selected_multiseed_seededloader/yoloworld_selected_curated_100k_score_head_seed1_seededloader/weights/best.pt",
+      "checkpoint_file_sha256": "f7d480fbd372fa16011ca08ddd6883d81c0bb17d690fbea738f283c6a7ba5f78",
+      "model_tensor_sha256": "f5e32332bc81168f32562dda1c75f9f07d46fd6a2d261b72d97d0b2fe73e0570",
+      "prediction_sha256": {
+        "mocs_dev": "c499811acaa32c6a335d01ed448faa58588c36e8b70fb9c5116d87caa6f84b14",
+        "cis_test": "7f677a119b8e0009671c62d43a8c15e46af6d0a914722a5062943dfd8d464c6c",
+        "positive_control": "22613460898471b98ec6140e15265d18060eda745e38d6f8504a1c892de4cfb4",
+        "confuser": "84acbc9558fa9cdfec96a02326c7f7be4cb4c44d06e4c450f964e8dd1b5b1ccf"
+      }
+    },
+    {
+      "family": "curated",
+      "seed": 2,
+      "checkpoint": "./adaptation/runs_selected_multiseed_seededloader/yoloworld_selected_curated_100k_score_head_seed2_seededloader/weights/best.pt",
+      "checkpoint_file_sha256": "3c3299566c0b712913d6dfbc76a6ea35f1a17281b2bafe9c23ba3b4bad9b2bce",
+      "model_tensor_sha256": "e1a6bb478fba5dc190899812e871740dfb616d9fa470e056254c2f821c6a0614",
+      "prediction_sha256": {
+        "mocs_dev": "3ca085818d62484c539018c687d486040e73c51d55925a27167b2403af22799c",
+        "cis_test": "b37e2551789495cb26cef761473bb1cca4381d5913204d287f928b0293d0884e",
+        "positive_control": "aa0a6c045f9fa579f96e1ee39fa028daeb15150514b01d1127d38bc258246b53",
+        "confuser": "9441fdba46c07eadd84c3c230aceb873e7eb11ea3be384944f78d21802feec0c"
+      }
+    },
+    {
+      "family": "random",
+      "seed": 0,
+      "checkpoint": "./adaptation/runs_scale_curated_vs_random/yoloworld_scale_random_100k_score_head_seed0/weights/best.pt",
+      "checkpoint_file_sha256": "0ce6d8800373173a4d4c7fd64bc35db489927bbc6a9c958849adab406946a18e",
+      "model_tensor_sha256": "d7ce9ad926916dfc379ea5fdf816fbac2bb7908beb641c34b328c79c097fa7e8",
+      "prediction_sha256": {
+        "mocs_dev": "84bee3f6e810bbc76bd8bd10e86aebf0af7a0c0b6dd9355fd1f76f4aa8574dd0",
+        "cis_test": "1cae78d4e75f1bb8a8f4418d2004be70dcac0921bea7de55cf44a0a8ad02c6fd",
+        "positive_control": "73f0740c23827054cd43d52d9b371fab3bffc1fbcaf6aa7f9ef9aef2a4ba3465",
+        "confuser": "7249a7141b8bb45bfa825dd4e1f55d29cecf23d8adc36153e5b228b230a8a163"
+      }
+    },
+    {
+      "family": "random",
+      "seed": 1,
+      "checkpoint": "./adaptation/runs_selected_multiseed_seededloader/yoloworld_selected_random_100k_score_head_seed1_seededloader/weights/best.pt",
+      "checkpoint_file_sha256": "5c1e8a502bd6f5446c7435fc7a8dba101e96f40784404006ca25cf026c4f4c4f",
+      "model_tensor_sha256": "315951c27f7fedf1cde3afede02379aa16b20001008f3cfb4285e41d49f99870",
+      "prediction_sha256": {
+        "mocs_dev": "5bf289c00c07e6e2a725c256e770ed73d04a825f7c8034114bae59e2061434f2",
+        "cis_test": "1afa43af3d6e2788bbf5ff921233d7fb2ae7490da33bcf880351f7fdb767f1c0",
+        "positive_control": "09e0af6b978d081364e60bbb30d5ff315642f85372fad4e20628222a6496e41f",
+        "confuser": "7c8344bd25581f43a050be53d7e6fecbb9b2bc8eb335661913296cc7ef631098"
+      }
+    },
+    {
+      "family": "random",
+      "seed": 2,
+      "checkpoint": "./adaptation/runs_selected_multiseed_seededloader/yoloworld_selected_random_100k_score_head_seed2_seededloader/weights/best.pt",
+      "checkpoint_file_sha256": "55ee7b1f72e910b67a52006659f963d760ddd00a5b7ab60256e97f2c1a7c1ca7",
+      "model_tensor_sha256": "c3d5f7b9a5769993ad5abdff305f2ce587ab2c7231b6ddc537e9b199fe8886ac",
+      "prediction_sha256": {
+        "mocs_dev": "accbd26402faf98928f8b186b91b3cd8a0c7fd4cf5c34f11955f1068c9283525",
+        "cis_test": "1716c1342cab4e5b4b5211c424c88c4215858b1bb6bbbb5b2e44934b5e9a412f",
+        "positive_control": "e7b480d7b65179545109a3256e279efb8ecadd96e117ac6c1e4dbba3ff5438b2",
+        "confuser": "4477963184122dd7ae923d703e4df35fb84bbfe22e83f6d6204a5af50d9d88e5"
+      }
+    }
+  ]
+}
