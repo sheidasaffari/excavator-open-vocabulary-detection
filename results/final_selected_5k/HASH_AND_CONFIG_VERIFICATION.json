@@ -1,0 +1,97 @@
+{
+  "selection": "Random-5K frozen on MOCS before held-out evaluation",
+  "checkpoints": {
+    "seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_scale_curated_vs_random/yoloworld_scale_random_5k_score_head_seed0/weights/best.pt",
+      "sha256": "df4b7822f9ec4a5fbac20c247d66f5afef5a07522dd38ad520a47eb35fe8e7bc"
+    },
+    "seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_5k_score_head_seed1_seededloader/weights/best.pt",
+      "sha256": "ac22894c1ae90e6eda4835ee1dad1c62fdaef5fb4b717699901ec8a7045294ee"
+    },
+    "seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_5k_score_head_seed2_seededloader/weights/best.pt",
+      "sha256": "9bb7340cc4fbe1e436920f4d71aa66e1c37d3e5f397f2d2a788182d7257c40c9"
+    }
+  },
+  "prediction_files": {
+    "seed0": {
+      "cis_test": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed0/cis_test_predictions.json",
+        "sha256": "2ae2af841c101d183e64093ceba017cb79b62c52006fcc8f2c1298fa2a03a2df"
+      },
+      "positive_control": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed0/positive_control_predictions.json",
+        "sha256": "d622ad73b1582f6e61847114303578ec692be8dcaff478923ee79256887dbb78"
+      },
+      "confuser": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed0/confuser_predictions.json",
+        "sha256": "4dc10e54763d8ca1c9b73128de0c97b9340184e458cdd23a537fd7047bb8841c"
+      },
+      "locked_config": {
+        "prompt": "construction excavator",
+        "prediction_floor": 0.001,
+        "operating_point": 0.25,
+        "image_size": 640,
+        "nms_iou": 0.7,
+        "max_detections": 300,
+        "class_agnostic_nms": false
+      }
+    },
+    "seed1": {
+      "cis_test": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed1/cis_test_predictions.json",
+        "sha256": "2b990e92b8a8e44d79bc4af31e6a2d0ce1d92fc13514cd1824e4e42ee1274680"
+      },
+      "positive_control": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed1/positive_control_predictions.json",
+        "sha256": "301f6d8ccf04103f46e76ff623cdcadb2a867239f95e6883c305b9f278ed54b7"
+      },
+      "confuser": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed1/confuser_predictions.json",
+        "sha256": "ef11eaf377e2e1d94ad0f89bbd9c229f46a00f8d0edde8c3e62b3ecdfc2d0f8f"
+      },
+      "locked_config": {
+        "prompt": "construction excavator",
+        "prediction_floor": 0.001,
+        "operating_point": 0.25,
+        "image_size": 640,
+        "nms_iou": 0.7,
+        "max_detections": 300,
+        "class_agnostic_nms": false
+      }
+    },
+    "seed2": {
+      "cis_test": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed2/cis_test_predictions.json",
+        "sha256": "fb1018194f90a6a74c86edee68b50ae3d394d632554c4dc0053477b646cfe272"
+      },
+      "positive_control": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed2/positive_control_predictions.json",
+        "sha256": "7873dd1fd6ca17728ae126675da46910b163e8c63e12763871af0618b69e380a"
+      },
+      "confuser": {
+        "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_selected_5k_multiseed/selected_random_5k_seed2/confuser_predictions.json",
+        "sha256": "0668f92e91ba3eedbe59d4c5c7cddd6fdc995857ab2f21fc5f8272cfd4eee86e"
+      },
+      "locked_config": {
+        "prompt": "construction excavator",
+        "prediction_floor": 0.001,
+        "operating_point": 0.25,
+        "image_size": 640,
+        "nms_iou": 0.7,
+        "max_detections": 300,
+        "class_agnostic_nms": false
+      }
+    }
+  },
+  "checks": {
+    "unique_checkpoint_hashes": 3,
+    "unique_prediction_hashes_per_dataset": {
+      "cis_test": 3,
+      "positive_control": 3,
+      "confuser": 3
+    },
+    "locked_configs_identical": true
+  }
+}

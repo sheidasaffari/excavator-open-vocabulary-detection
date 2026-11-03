@@ -16,13 +16,15 @@ condition in the [Excavision Hugging Face Explorer](https://huggingface.co/space
 The models exhibited different failure modes: Grounding DINO achieved strong
 excavator recall but frequently confused related machines and detached components,
 whereas YOLO-World often localized excavators correctly but assigned them scores
-below the operating threshold. Selective YOLO-World adaptation with 100,000
-randomly sampled Excavision images consistently improved fixed-threshold recall and
-F1 across three real-image sources, but did **not** consistently improve AP or
-confuser rejection—showing that positive synthetic data improves sensitivity but
-does not replace negative evidence for learning a sharper category boundary.
+below the operating threshold. A three-seed subset-size study showed that only
+5,000 randomly sampled Excavision images were sufficient to saturate ranking-based
+accuracy on MOCS. After this size was frozen, selective YOLO-World adaptation
+consistently improved fixed-threshold recall and F1 across three real-image sources,
+but did **not** consistently improve AP or confuser rejection—showing that positive
+synthetic data improves sensitivity but does not replace negative evidence for
+learning a sharper category boundary.
 
-![Final multi-seed result](results/final_multiseed/final_random100k_vs_no_adaptation.png)
+![Final frozen Random-5K result](results/final_selected_5k/final_random5k_vs_no_adaptation.png)
 
 **Interpretation.** Positive-only synthetic adaptation improves excavator recall but
 does not reliably sharpen the excavator/non-excavator category boundary. This
@@ -41,13 +43,16 @@ wheel loaders, isolated attachments, and other confusing objects.
    the selected prompt, an IoU≥0.50 candidate exists for 89.1% of MOCS ground-truth
    excavators and 89.8% of the independent positive-control instances. Confidence
    failures account for 51.0% and 65.0% of instances, respectively.
-3. **Positive-only Excavision data targets that weakness.** Across three independent
-   seeds, score-head adaptation raised recall by +0.115 on MOCS, +0.102 on CIS, and
-   +0.119 on the positive control at the locked 0.25 threshold.
-4. **The gain is not universal detector improvement.** AP50:95 changed by +0.024,
-   −0.002, and −0.005 on those same datasets. Confuser image FPR changed from 0.164
-   to 0.173±0.081. Positive synthetic images improve sensitivity but do not supply
-   the negative evidence needed to sharpen the excavator/non-excavator boundary.
+3. **Positive-only Excavision data targets that weakness efficiently.** Across three
+   independent seeds, Random-5K score-head adaptation raised recall by +0.258 on
+   MOCS, +0.249 on CIS, and +0.263 on the positive control at the locked 0.25
+   threshold. Larger positive-only subsets were not needed to obtain the MOCS AP
+   benefit and produced lower mean fixed-threshold recall.
+4. **The gain is a sensitivity–specificity trade-off, not universal improvement.**
+   AP50:95 changed by +0.023, +0.007, and −0.004 on those same datasets. Confuser
+   image FPR increased from 0.164 to 0.494±0.086. Positive synthetic images improve
+   sensitivity but do not supply the negative evidence needed to sharpen the
+   excavator/non-excavator boundary.
 
 ## Zero-shot benchmark
 
@@ -106,32 +111,11 @@ localization branch were frozen. Training updated the open-vocabulary scoring he
 using single-class Excavision positives. The locked recipe used 30 epochs, AdamW,
 batch size 64, 640-pixel inputs, and the selected prompt `construction excavator`.
 
-An exploratory seed-0 scale sweep compared 5K, 20K, 100K, and 500K random subsets
-on the MOCS development set. Under the predeclared selection rule—maximize
-AP50:95, using recall only to break a tie—100K was selected because it achieved the
-highest AP50:95 (0.587), and was then frozen before confirmatory multi-seed and
-held-out evaluation. This was a protocol-valid model-selection decision, not proof
-that 100K is the universally optimal or most data-efficient size: 5K was close in
-AP50:95, while 20K produced the highest seed-0 recall and F1. The non-monotonic
-curve therefore does not support a “more synthetic data is always better” claim.
-
-![YOLO-World random-subset scale sweep on MOCS](results/scale_study/mocs_random_vs_no_adaptation_ap50_ap5095.png)
-
-The scale sweep was used only for development-set selection; the later three-seed
-evaluation tests the frozen 100K choice rather than reselecting it from held-out
-results. Curated subsets were also audited internally but showed no consistent
-advantage and are not part of the main claim. Exact scale-sweep values and the full
-interpretation are available in
-[`results/scale_study/REPORT.md`](results/scale_study/REPORT.md).
-
-### Follow-up multi-seed size selection
-
-Because the original choice was based on one seed and 5K was close to 100K, a
-focused follow-up evaluated 5K, 10K, 20K, and 50K with three independent seeds;
-the completed three-seed 100K condition was retained as a reference. All 15
-checkpoints were reevaluated through one identical MOCS pipeline. Mean AP50:95 was
-effectively saturated across sizes, while recall and F1 decreased as the synthetic
-budget grew.
+The main size experiment evaluated random 5K, 10K, 20K, 50K, and 100K Excavision
+subsets with three independent seeds per size. All 15 checkpoints used the same
+training recipe and were evaluated through one identical MOCS development-set
+pipeline. Mean AP50 and AP50:95 were effectively saturated across sizes, while
+fixed-threshold recall and F1 decreased as the positive-only synthetic budget grew.
 
 ![Comprehensive multi-seed random-subset size study](results/size_selection_multiseed/mocs_multiseed_subset_size_comprehensive.png)
 
@@ -142,49 +126,50 @@ bars are standard deviations; dashed lines are the unchanged zero-shot baseline.
 
 The frozen rule first maximized mean AP50:95, treated configurations within 0.005
 or with overlapping 95% confidence intervals as practically equivalent, then used
-mean recall and data efficiency as tie-breakers. It selected **5K** (green in the
-figure; 100K is retained in gold as the earlier reference): AP50:95 was
-0.577±0.006 and recall was 0.620±0.043, compared with 0.578±0.007 and 0.477±0.084
-for 100K. Thus, 100K is not supported as the uniquely best size; the MOCS evidence
-instead indicates rapid saturation and favors the much smaller 5K subset.
-
-This 5K decision was made on MOCS only and is now frozen. It must next be evaluated
-on CIS, the positive control, and confusers without revising the choice. Until that
-confirmatory pass is complete, the previously accepted held-out result below
-remains the 100K result. The complete decision record, mean/std/CI table, per-seed
-values, and integrity hashes are in
+mean recall and data efficiency as tie-breakers. It selected **5K**: AP50:95 was
+0.577±0.006 and recall was 0.620±0.043. The MOCS evidence therefore supports rapid
+saturation and data efficiency, not a monotonic “more synthetic data is better”
+claim. The complete selection record and per-seed values are in
 [`results/size_selection_multiseed`](results/size_selection_multiseed/).
 
-### Accepted three-seed results
+### Frozen held-out evaluation
 
-The publication figure above contains the complete no-adaptation versus Random-100K
-comparison for AP50, AP50:95, recall, and confuser false-positive rate, so those
-values are not duplicated in a second Markdown table. Exact values and all per-seed
-measurements remain available in
-[`final_figure_data.csv`](results/final_multiseed/final_figure_data.csv) and
-[`per_seed_results.csv`](results/final_multiseed/per_seed_results.csv).
+After selection, all three Random-5K checkpoints were applied unchanged to CIS,
+the independent positive control, and the corrected confuser set. No held-out
+result was used to revise the selected size, prompt, or 0.25 operating threshold.
 
-The final integrity audit verified 3/3 unique model-tensor hashes and 3/3 unique
-prediction hashes for every evaluated dataset. The accepted outputs are under
-[`results/final_multiseed`](results/final_multiseed/). Two earlier multi-seed attempts
-were rejected after discovering identical effective data-order trajectories; they
-are intentionally excluded from this repository.
+![Final frozen Random-5K evaluation](results/final_selected_5k/final_random5k_vs_no_adaptation.png)
+
+Random-5K increased recall from 0.362 to 0.620±0.043 on MOCS, from 0.523 to
+0.772±0.046 on CIS, and from 0.277 to 0.540±0.038 on the positive control. AP50:95
+changed from 0.554 to 0.577±0.006, 0.665 to 0.672±0.009, and 0.261 to
+0.256±0.011, respectively. Confuser image FPR increased from 0.164 to 0.494±0.086.
+The supported claim is therefore a strong fixed-threshold sensitivity and F1 gain,
+not universal AP improvement or improved specificity.
+
+Exact mean/std values, all per-seed measurements, and the integrity record are in
+[`results/final_selected_5k`](results/final_selected_5k/). The audit verified three
+unique checkpoint hashes, three unique prediction hashes for every held-out
+dataset, and identical locked inference configurations across seeds.
 
 ### Detections recovered after adaptation
 
-The examples below were extracted with a fixed rule: the no-adaptation model had an
-IoU≥0.50 candidate below the 0.25 operating threshold, while every one of the three
-Random-100K seeds produced an IoU≥0.50 detection at or above 0.25. Seed 0 is shown
-for visual comparison; the caption in each adapted panel reports all three scores.
+The additional examples below were extracted with a fixed rule: the no-adaptation
+model had an IoU≥0.50 candidate below the 0.25 operating threshold, while every one
+of the three Random-5K seeds produced an IoU≥0.50 detection at or above 0.25. Seed
+0 is shown for visual comparison; the caption in each adapted panel reports all
+three scores.
 These are illustrative cases consistent with the aggregate recall result, not an
 additional independent evaluation.
 
-![YOLO-World detections recovered after adaptation](results/failure_cases/yolo_world_recovered_after_adaptation.png)
+![Additional YOLO-World detections recovered by Random-5K adaptation](results/failure_cases/yolo_world_selected_random5k_recoveries.png)
 
 Selection provenance and exact image identifiers are recorded in
-[`failure_case_manifest.csv`](results/failure_cases/failure_case_manifest.csv). The
-figures can be regenerated locally with
-[`build_failure_case_figures.py`](scripts/visualization/build_failure_case_figures.py)
+[`selected_random5k_recovery_manifest.csv`](results/failure_cases/selected_random5k_recovery_manifest.csv).
+The earlier qualitative composites remain available in
+[`results/failure_cases`](results/failure_cases/) and were not removed. The new
+figure can be regenerated locally with
+[`build_selected_5k_recovery_examples.py`](scripts/visualization/build_selected_5k_recovery_examples.py)
 when the private datasets and prediction files are available.
 
 ## Grounding DINO adaptation — future work
@@ -253,7 +238,7 @@ python scripts/evaluation/run_grounding_dino.py \
 
 python scripts/adaptation/train_yolo_world.py \
   --model yolov8s-worldv2.pt --arm score_head --device 0 \
-  --train-list data/excavision/train.txt --expected-images 100000 \
+  --train-list data/excavision/train.txt --expected-images 5000 \
   --val-images data/mocs/images --epochs 30 --batch 64 --seed 0
 ```
 

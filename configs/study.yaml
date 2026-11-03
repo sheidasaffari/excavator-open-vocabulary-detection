@@ -15,4 +15,4 @@ adaptation:
   optimizer: AdamW
   learning_rate: 0.001
   seeds: [0, 1, 2]
-  selected_random_subset_size: 100000
+  selected_random_subset_size: 5000

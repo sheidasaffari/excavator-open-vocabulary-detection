@@ -1,0 +1,7 @@
+figure,dataset,image_id,gt_index,description,baseline_score,seed0_score,seed1_score,seed2_score,all_three_seeds_recovered
+yolo_world_selected_random5k_recoveries,mocs_dev,0005707,0,Multi-instance scene,0.2042371928691864,0.5935706496238708,0.6607542634010315,0.6216495037078857,True
+yolo_world_selected_random5k_recoveries,mocs_dev,0000120,1,Small/distant excavator,0.10422738641500473,0.3556479215621948,0.321539044380188,0.29992055892944336,True
+yolo_world_selected_random5k_recoveries,cis_test,excavator_001219,0,Multi-instance scene,0.19807621836662292,0.5819370746612549,0.653059720993042,0.5433403849601746,True
+yolo_world_selected_random5k_recoveries,cis_test,excavator_000431,4,Small/distant excavator,0.031627073884010315,0.4411756992340088,0.41093698143959045,0.3271823227405548,True
+yolo_world_selected_random5k_recoveries,positive_control,pc3_112,0,Multi-instance scene,0.13459829986095428,0.5376547574996948,0.7506361603736877,0.5726917386054993,True
+yolo_world_selected_random5k_recoveries,positive_control,pc3_108,0,Small/distant excavator,0.08750168234109879,0.37516283988952637,0.3407638370990753,0.258465051651001,True
