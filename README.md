@@ -133,11 +133,17 @@ checkpoints were reevaluated through one identical MOCS pipeline. Mean AP50:95 w
 effectively saturated across sizes, while recall and F1 decreased as the synthetic
 budget grew.
 
-![Multi-seed random-subset size study](results/size_selection_multiseed/mocs_multiseed_subset_size_curve.png)
+![Comprehensive multi-seed random-subset size study](results/size_selection_multiseed/mocs_multiseed_subset_size_comprehensive.png)
+
+The figure reports every locked MOCS metric in one place: AP50, AP50:95,
+precision, recall, and F1 at the fixed 0.25 operating threshold, plus the
+AP50:95–recall trade-off. Points are means over three independent seeds and error
+bars are standard deviations; dashed lines are the unchanged zero-shot baseline.
 
 The frozen rule first maximized mean AP50:95, treated configurations within 0.005
 or with overlapping 95% confidence intervals as practically equivalent, then used
-mean recall and data efficiency as tie-breakers. It selected **5K**: AP50:95 was
+mean recall and data efficiency as tie-breakers. It selected **5K** (green in the
+figure; 100K is retained in gold as the earlier reference): AP50:95 was
 0.577±0.006 and recall was 0.620±0.043, compared with 0.578±0.007 and 0.477±0.084
 for 100K. Thus, 100K is not supported as the uniquely best size; the MOCS evidence
 instead indicates rapid saturation and favors the much smaller 5K subset.

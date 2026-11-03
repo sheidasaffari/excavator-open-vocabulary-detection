@@ -3,6 +3,10 @@
 All checkpoints were evaluated with the locked prompt `construction excavator`, prediction floor 0.001, NMS IoU 0.70, image size 640, and operating threshold 0.25.
 MOCS is the development set. No held-out dataset was used for size selection.
 
+![Comprehensive multi-seed size study](mocs_multiseed_subset_size_comprehensive.png)
+
+The publication figure combines AP50, AP50:95, precision, recall, F1, and the AP50:95–recall trade-off. Points are means and error bars are standard deviations across three independent seeds; dashed lines show the no-adaptation baseline. The frozen 5K selection is green and the earlier 100K reference is gold.
+
 | Size | AP50 | AP50:95 | Precision@0.25 | Recall@0.25 | F1@0.25 |
 |---:|---:|---:|---:|---:|---:|
 | 5K | 0.762 ± 0.005 | 0.577 ± 0.006 | 0.868 ± 0.034 | 0.620 ± 0.043 | 0.722 ± 0.018 |
