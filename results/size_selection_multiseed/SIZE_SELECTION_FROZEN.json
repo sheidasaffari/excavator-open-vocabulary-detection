@@ -1,0 +1,73 @@
+{
+  "status": "FROZEN_AFTER_MOCS_DEVELOPMENT_SELECTION",
+  "selection_dataset": "MOCS development set",
+  "candidate_sizes": [
+    "5K",
+    "10K",
+    "20K",
+    "50K"
+  ],
+  "reference_size": "100K",
+  "rule": {
+    "primary": "highest mean AP50:95 across three seeds",
+    "practical_AP_equivalence": "absolute mean difference <= 0.005 OR overlapping 95% confidence intervals",
+    "secondary": "highest mean recall@0.25 among AP-equivalent configurations",
+    "efficiency_tiebreak": "smallest size when mean recall differs by <= 0.01"
+  },
+  "best_primary_candidate": "20K",
+  "AP_equivalent_candidates": [
+    "5K",
+    "10K",
+    "20K",
+    "50K"
+  ],
+  "recall_equivalent_candidates": [
+    "5K",
+    "10K"
+  ],
+  "selected_size": "5K",
+  "selected_metrics": {
+    "size": "5K",
+    "n_images": 5000,
+    "n_seeds": 3,
+    "AP50_mean": 0.7618290681418172,
+    "AP50_std": 0.004861454847591102,
+    "AP50_ci95_half": 0.01207652332132668,
+    "AP50:95_mean": 0.5769277113059973,
+    "AP50:95_std": 0.005545216879089417,
+    "AP50:95_ci95_half": 0.01377508236969854,
+    "precision_mean": 0.8684981188366493,
+    "precision_std": 0.03437843813171912,
+    "precision_ci95_half": 0.08540077463729076,
+    "recall_mean": 0.6202938475665748,
+    "recall_std": 0.04343395515622501,
+    "recall_ci95_half": 0.10789592597810896,
+    "f1_mean": 0.7223036118885778,
+    "f1_std": 0.018007680043155314,
+    "f1_ci95_half": 0.04473355709801825
+  },
+  "reference_100K_metrics": {
+    "size": "100K",
+    "n_images": 100000,
+    "n_seeds": 3,
+    "AP50_mean": 0.7679927920361833,
+    "AP50_std": 0.0017419398079703055,
+    "AP50_ci95_half": 0.0043272183687409005,
+    "AP50:95_mean": 0.5784723316997225,
+    "AP50:95_std": 0.007044406615302733,
+    "AP50:95_ci95_half": 0.017499276130635125,
+    "precision_mean": 0.9457827430189906,
+    "precision_std": 0.022229977722435956,
+    "precision_ci95_half": 0.055222325993749655,
+    "recall_mean": 0.4770431588613407,
+    "recall_std": 0.0837912122375609,
+    "recall_ci95_half": 0.2081489102404288,
+    "f1_mean": 0.630488785371968,
+    "f1_std": 0.06833678986536959,
+    "f1_ci95_half": 0.16975799681090656
+  },
+  "selected_vs_100K_AP50_95_mean_difference": -0.0015446203937251601,
+  "selected_vs_100K_AP_equivalent": true,
+  "held_out_datasets_used_for_selection": false,
+  "next_step": "Evaluate the frozen selected size on CIS, positive control, and confusers; do not revise selection from those outcomes."
+}

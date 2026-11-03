@@ -124,6 +124,31 @@ advantage and are not part of the main claim. Exact scale-sweep values and the f
 interpretation are available in
 [`results/scale_study/REPORT.md`](results/scale_study/REPORT.md).
 
+### Follow-up multi-seed size selection
+
+Because the original choice was based on one seed and 5K was close to 100K, a
+focused follow-up evaluated 5K, 10K, 20K, and 50K with three independent seeds;
+the completed three-seed 100K condition was retained as a reference. All 15
+checkpoints were reevaluated through one identical MOCS pipeline. Mean AP50:95 was
+effectively saturated across sizes, while recall and F1 decreased as the synthetic
+budget grew.
+
+![Multi-seed random-subset size study](results/size_selection_multiseed/mocs_multiseed_subset_size_curve.png)
+
+The frozen rule first maximized mean AP50:95, treated configurations within 0.005
+or with overlapping 95% confidence intervals as practically equivalent, then used
+mean recall and data efficiency as tie-breakers. It selected **5K**: AP50:95 was
+0.577±0.006 and recall was 0.620±0.043, compared with 0.578±0.007 and 0.477±0.084
+for 100K. Thus, 100K is not supported as the uniquely best size; the MOCS evidence
+instead indicates rapid saturation and favors the much smaller 5K subset.
+
+This 5K decision was made on MOCS only and is now frozen. It must next be evaluated
+on CIS, the positive control, and confusers without revising the choice. Until that
+confirmatory pass is complete, the previously accepted held-out result below
+remains the 100K result. The complete decision record, mean/std/CI table, per-seed
+values, and integrity hashes are in
+[`results/size_selection_multiseed`](results/size_selection_multiseed/).
+
 ### Accepted three-seed results
 
 The publication figure above contains the complete no-adaptation versus Random-100K

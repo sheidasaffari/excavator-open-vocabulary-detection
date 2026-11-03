@@ -1,0 +1,139 @@
+{
+  "n_checkpoints": 15,
+  "n_unique_checkpoint_hashes": 15,
+  "n_prediction_files": 15,
+  "n_unique_prediction_hashes": 15,
+  "locked_inference_config": {
+    "prompt": "construction excavator",
+    "prediction_floor": 0.001,
+    "operating_point": 0.25,
+    "image_size": 640,
+    "nms_iou": 0.7,
+    "max_detections": 300,
+    "class_agnostic_nms": false
+  },
+  "checkpoints": {
+    "5K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_scale_curated_vs_random/yoloworld_scale_random_5k_score_head_seed0/weights/best.pt",
+      "sha256": "df4b7822f9ec4a5fbac20c247d66f5afef5a07522dd38ad520a47eb35fe8e7bc"
+    },
+    "5K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_5k_score_head_seed1_seededloader/weights/best.pt",
+      "sha256": "ac22894c1ae90e6eda4835ee1dad1c62fdaef5fb4b717699901ec8a7045294ee"
+    },
+    "5K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_5k_score_head_seed2_seededloader/weights/best.pt",
+      "sha256": "9bb7340cc4fbe1e436920f4d71aa66e1c37d3e5f397f2d2a788182d7257c40c9"
+    },
+    "10K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_10k_score_head_seed0_seededloader/weights/best.pt",
+      "sha256": "4920866cc1f4d5ff901d43069410382b9951cb830ebdbcdeafd5c6467b972daf"
+    },
+    "10K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_10k_score_head_seed1_seededloader/weights/best.pt",
+      "sha256": "62f4bd266a427f880d853d63f5bd3caa4d3e0b9861ee0802ad64809200fca8e0"
+    },
+    "10K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_10k_score_head_seed2_seededloader/weights/best.pt",
+      "sha256": "50170752c940c3fbc86b75e5b800b4460f5a8f92b224bd56c2d66bcca657976e"
+    },
+    "20K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_scale_curated_vs_random/yoloworld_scale_random_20k_score_head_seed0/weights/best.pt",
+      "sha256": "dda5a712335f9d48d80a15c1c7b9d86bf0d3ef680ca874ed0f88ff6a64fea3bc"
+    },
+    "20K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_20k_score_head_seed1_seededloader/weights/best.pt",
+      "sha256": "3d85e73d72f453cf5f025affe6239e30776fb9f2afb37cfb51cf1439c5e93476"
+    },
+    "20K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_20k_score_head_seed2_seededloader/weights/best.pt",
+      "sha256": "7b40dcfe0ff0a7283e5137f7fd3ab1a9c7b7c975be703f9641141ec2a5af6016"
+    },
+    "50K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_50k_score_head_seed0_seededloader/weights/best.pt",
+      "sha256": "1e072f58943ad299339f2322c2890520e662a7c50f1b6de2afc93289471ed0ba"
+    },
+    "50K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_50k_score_head_seed1_seededloader/weights/best.pt",
+      "sha256": "5ae9e0ca0377dea412210f557554bba10b01c511a75abb36c7a88a7462f534c7"
+    },
+    "50K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_random_size_multiseed/yoloworld_scale_random_50k_score_head_seed2_seededloader/weights/best.pt",
+      "sha256": "069b36643c8c69c7af416c2b1b5cae72d1a4f625e62761c7ac84611e72df0525"
+    },
+    "100K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_scale_curated_vs_random/yoloworld_scale_random_100k_score_head_seed0/weights/best.pt",
+      "sha256": "0ce6d8800373173a4d4c7fd64bc35db489927bbc6a9c958849adab406946a18e"
+    },
+    "100K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_selected_multiseed_seededloader/yoloworld_selected_random_100k_score_head_seed1_seededloader/weights/best.pt",
+      "sha256": "5c1e8a502bd6f5446c7435fc7a8dba101e96f40784404006ca25cf026c4f4c4f"
+    },
+    "100K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/runs_selected_multiseed_seededloader/yoloworld_selected_random_100k_score_head_seed2_seededloader/weights/best.pt",
+      "sha256": "55ee7b1f72e910b67a52006659f963d760ddd00a5b7ab60256e97f2c1a7c1ca7"
+    }
+  },
+  "predictions": {
+    "5K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_5k_seed0/mocs_dev_predictions.json",
+      "sha256": "bca4b7bbb75e9d23e23017637530a3f222d668b3c34b7caa39e7879cb7da4df0"
+    },
+    "5K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_5k_seed1/mocs_dev_predictions.json",
+      "sha256": "8a0148d40cd69f710e79f9e729586bb64ce39051c2b03ace4a97229fd5ad29f7"
+    },
+    "5K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_5k_seed2/mocs_dev_predictions.json",
+      "sha256": "ecad72389ed9a380c0a4f2cf00fd027360062f01d7486e99c7d312e98209c560"
+    },
+    "10K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_10k_seed0/mocs_dev_predictions.json",
+      "sha256": "ad3cbb3e22e5f88ede05c8803ba02756cc8ccb40901c207435b3b3dbb9eccf44"
+    },
+    "10K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_10k_seed1/mocs_dev_predictions.json",
+      "sha256": "eca7613fddf923f05d4cc63c89fb99dc2eaee2cca7fc3a714710f147c60f672b"
+    },
+    "10K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_10k_seed2/mocs_dev_predictions.json",
+      "sha256": "d800a6fbf7f91c095318eddb362730d1a4624d2fc5220840a3e218d9825f4cca"
+    },
+    "20K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_20k_seed0/mocs_dev_predictions.json",
+      "sha256": "6d8dd0265599e39f76be773590d3d180509167ee44579e0a0e3e5009a0a804db"
+    },
+    "20K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_20k_seed1/mocs_dev_predictions.json",
+      "sha256": "8cbfbfc838d02656f99f6c5efafb8c1795b1899c521fb6b2f33534282aec0cf6"
+    },
+    "20K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_20k_seed2/mocs_dev_predictions.json",
+      "sha256": "8ff819be27d3fee35741c3859961225af5dd4126061edb3edfee1c024c881a57"
+    },
+    "50K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_50k_seed0/mocs_dev_predictions.json",
+      "sha256": "2dc1d50022ce2994f60146cec652ff0a60b6c01cef4068865057ac1549864c6a"
+    },
+    "50K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_50k_seed1/mocs_dev_predictions.json",
+      "sha256": "6a439fc7dfcfb6245ee7812e4804b57d45c3536683f4f1c134adbe073e451d24"
+    },
+    "50K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_50k_seed2/mocs_dev_predictions.json",
+      "sha256": "c730783c794e6d91ba18dd06318b789c097f00ce628a89e59ffeba044dfc2289"
+    },
+    "100K_seed0": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_100k_seed0/mocs_dev_predictions.json",
+      "sha256": "84bee3f6e810bbc76bd8bd10e86aebf0af7a0c0b6dd9355fd1f76f4aa8574dd0"
+    },
+    "100K_seed1": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_100k_seed1/mocs_dev_predictions.json",
+      "sha256": "5bf289c00c07e6e2a725c256e770ed73d04a825f7c8034114bae59e2061434f2"
+    },
+    "100K_seed2": {
+      "path": "/home/ssaffari/Data/foundational/adaptation/evaluation_random_size_multiseed_mocs/random_100k_seed2/mocs_dev_predictions.json",
+      "sha256": "accbd26402faf98928f8b186b91b3cd8a0c7fd4cf5c34f11955f1068c9283525"
+    }
+  }
+}
