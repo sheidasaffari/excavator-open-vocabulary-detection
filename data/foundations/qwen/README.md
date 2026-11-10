@@ -35,6 +35,11 @@ report before that release is treated as authoritative.
 - `examples/pilot_validation_report.json`: pilot validation summary.
 - `scripts/select_subset.py`: deterministic selection from any JSONL master
   manifest, with a sidecar recipe and parent-manifest checksum.
+- `scripts/build_master_manifest.py`: resumable full-pool indexer with adapters
+  for processed, Newgen rounds 1–3, and colored data. It reads only label
+  headers, never decodes/copies image pixels, and emits JSONL plus Parquet.
+- `FULL_RELEASE_REPORT.md`: counts, exclusion reconciliation, artifact sizes,
+  and SHA-256 values for the completed `excavision-master-v1` release.
 
 ## Five experiment levels
 
@@ -94,3 +99,23 @@ materialized only for the chosen IDs.
 This design supports a small high-diversity LoRA set without losing the ability
 to revisit the complete pool later.
 
+## Building the full lightweight index
+
+```bash
+python data/foundations/qwen/scripts/build_master_manifest.py \
+  --processed-root /home/ssaffari/Data/excavision/processed \
+  --newgen-root /home/ssaffari/Data/newgen/output/targeted \
+  --colored-root /home/ssaffari/Data/color-project/output-colored \
+  --output /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1 \
+  --release-id excavision-master-v1 \
+  --resume
+```
+
+The release contains `master_manifest.jsonl`, a compact
+`master_samples.parquet`, source-partition JSONL files, `release.json`,
+`validation_report.json`, and `invalid_samples.jsonl`. A source partition is
+published atomically only after it finishes; `--resume` reuses completed
+partitions after interruption.
+
+To correct or refresh selected adapters without rescanning the rest, combine
+`--resume` with `--rebuild-sources`, followed by one or more source names.
