@@ -1,5 +1,0 @@
-releases/
-generated/
-*.parquet
-__pycache__/
-*.pyc
