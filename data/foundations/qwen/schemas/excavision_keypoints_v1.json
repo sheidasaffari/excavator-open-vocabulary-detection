@@ -1,6 +1,6 @@
 {
   "schema_name": "excavision_keypoints",
-  "schema_version": "1.0.0-pilot",
+  "schema_version": "1.0.0",
   "landmark_representation": "Blender pose-bone head",
   "root_landmark": {
     "index": 0,

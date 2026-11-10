@@ -43,6 +43,11 @@ report before that release is treated as authoritative.
 - `scripts/build_curated_subsets.py`: maps historical curated lists back to
   complete master rows and validates every raw RGB/2D/3D/occlusion/depth path.
   It preserves curated rank and creates nested, copy-free subset manifests.
+- `scripts/materialize_curated_qwen.py`: canonicalizes only selected nested
+  subsets and emits five-level, Qwen/LLaMA-Factory-style conversations without
+  copying source media.
+- `CURATED_QWEN_MATERIALIZATION_REPORT.md`: full materialization counts,
+  storage layout, and cross-file validation results.
 
 ## Five experiment levels
 
@@ -138,3 +143,18 @@ python data/foundations/qwen/scripts/build_curated_subsets.py \
 The builder canonicalizes historical union aliases, removes duplicate raw
 samples by `sample_id`, backfills from the next-ranked unique sample, validates
 all raw modalities, and emits strictly nested 5K/10K/20K/50K/100K manifests.
+
+## Materializing canonical annotations and Qwen conversations
+
+```bash
+python data/foundations/qwen/scripts/materialize_curated_qwen.py \
+  --master-release /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1 \
+  --subset-family /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1/subsets/curated_v4_rank_neutral \
+  --keypoint-registry data/foundations/qwen/schemas/excavision_keypoints_v1.json \
+  --output /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1/materialized/curated_v4_rank_neutral_qwen_v1
+```
+
+The largest selected pool is canonicalized once in 1,000-record shards.
+Smaller subsets receive conversation views over the shared store. Each image
+produces one example at each of the five experiment levels. Original RGB and
+depth paths remain authoritative; materialization does not duplicate media.
