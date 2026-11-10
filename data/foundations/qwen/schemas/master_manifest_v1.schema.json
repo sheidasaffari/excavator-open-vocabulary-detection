@@ -19,7 +19,7 @@
     "schema_version": {"const": "excavision-master-manifest/1.0.0"},
     "manifest_release": {"type": "string", "minLength": 1},
     "source_collection": {
-      "enum": ["excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored"]
+      "enum": ["excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored", "colored_green"]
     },
     "source_stem": {"type": "string", "minLength": 1},
     "source_root_alias": {"type": "string"},

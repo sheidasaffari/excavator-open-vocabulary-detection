@@ -214,6 +214,7 @@ class ProcessedAdapter(Adapter):
 
 class SceneAdapter(Adapter):
     round_number: int | None = None
+    sample_prefix: str
 
     def scenes(self) -> Iterator[tuple[Path, str | None]]:
         raise NotImplementedError
@@ -232,8 +233,8 @@ class SceneAdapter(Adapter):
         sample_id = f"{prefix}__{stem}"
         group_id = f"{prefix}__{scene_name}"
         if generator_id:
-            sample_id = f"colored__{generator_id}__{scene_name}__{stem}"
-            group_id = f"colored__{generator_id}__{scene_name}"
+            sample_id = f"{self.sample_prefix}__{generator_id}__{scene_name}__{stem}"
+            group_id = f"{self.sample_prefix}__{generator_id}__{scene_name}"
         return Candidate(
             sample_id=sample_id,
             source_collection=self.source_collection,
@@ -278,6 +279,7 @@ class NewgenAdapter(SceneAdapter):
         super().__init__(root)
         self.round_number = round_number
         self.source_collection = f"newgen_r{round_number}"
+        self.sample_prefix = self.source_collection
 
     def scenes(self) -> Iterator[tuple[Path, str | None]]:
         round_dir = self.root / f"round{self.round_number}"
@@ -288,8 +290,12 @@ class NewgenAdapter(SceneAdapter):
 
 
 class ColoredAdapter(SceneAdapter):
-    source_collection = "colored"
-    root_alias = "colored_output"
+    def __init__(self, root: Path, source_collection: str = "colored",
+                 root_alias: str = "colored_output", sample_prefix: str = "colored"):
+        super().__init__(root)
+        self.source_collection = source_collection
+        self.root_alias = root_alias
+        self.sample_prefix = sample_prefix
 
     def scenes(self) -> Iterator[tuple[Path, str | None]]:
         if not self.root.is_dir():
@@ -617,16 +623,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--processed-root", type=Path, required=True)
     parser.add_argument("--newgen-root", type=Path, required=True)
     parser.add_argument("--colored-root", type=Path, required=True)
+    parser.add_argument("--colored-green-root", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--release-id", required=True)
     parser.add_argument(
         "--sources", nargs="+",
-        choices=["excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored"],
+        choices=["excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored", "colored_green"],
     )
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(
         "--rebuild-sources", nargs="+", default=[],
-        choices=["excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored"],
+        choices=["excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored", "colored_green"],
         help="Rebuild these partitions even when --resume finds completed output.",
     )
     parser.add_argument("--limit-per-source", type=int)
@@ -636,9 +643,12 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    selected = set(args.sources or [
+    default_sources = [
         "excavision_processed", "newgen_r1", "newgen_r2", "newgen_r3", "colored"
-    ])
+    ]
+    if args.colored_green_root:
+        default_sources.append("colored_green")
+    selected = set(args.sources or default_sources)
     adapters: list[Adapter] = [
         ProcessedAdapter(args.processed_root),
         NewgenAdapter(args.newgen_root, 1),
@@ -646,6 +656,13 @@ def main() -> None:
         NewgenAdapter(args.newgen_root, 3),
         ColoredAdapter(args.colored_root),
     ]
+    if args.colored_green_root:
+        adapters.append(ColoredAdapter(
+            args.colored_green_root,
+            source_collection="colored_green",
+            root_alias="colored_green_output",
+            sample_prefix="colored_green",
+        ))
     adapters = [adapter for adapter in adapters if adapter.source_collection in selected]
     rebuild_sources = set(args.rebuild_sources)
     for adapter in adapters:
@@ -670,6 +687,9 @@ def main() -> None:
             "excavision_processed": str(args.processed_root.resolve()),
             "newgen_targeted": str(args.newgen_root.resolve()),
             "colored_output": str(args.colored_root.resolve()),
+            "colored_green_output": (
+                str(args.colored_green_root.resolve()) if args.colored_green_root else None
+            ),
         },
         "selected_sources": [adapter.source_collection for adapter in adapters],
         "limit_per_source": args.limit_per_source,

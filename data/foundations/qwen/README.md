@@ -13,8 +13,8 @@ collections; manifests select them by stable ID and record their provenance.
 - The pilot produces 50 examples: ten examples for each of five experiment
   levels.
 - Six pilot samples have dense depth; four exercise RGB-only abstention.
-- The audited full pool contains approximately 1,032,309 complete image/label
-  samples: 675,152 processed, 347,202 Newgen, and 9,955 colored.
+- The master release contains 1,045,195 complete image/label samples: 675,152
+  processed, 347,202 Newgen, 9,955 colored, and 12,886 colored-green samples.
 
 The full-pool counts are an inventory snapshot, not a committed train split.
 They must be reproduced by the full indexing run and written into its release
@@ -40,6 +40,9 @@ report before that release is treated as authoritative.
   headers, never decodes/copies image pixels, and emits JSONL plus Parquet.
 - `FULL_RELEASE_REPORT.md`: counts, exclusion reconciliation, artifact sizes,
   and SHA-256 values for the completed `excavision-master-v1` release.
+- `scripts/build_curated_subsets.py`: maps historical curated lists back to
+  complete master rows and validates every raw RGB/2D/3D/occlusion/depth path.
+  It preserves curated rank and creates nested, copy-free subset manifests.
 
 ## Five experiment levels
 
@@ -106,6 +109,7 @@ python data/foundations/qwen/scripts/build_master_manifest.py \
   --processed-root /home/ssaffari/Data/excavision/processed \
   --newgen-root /home/ssaffari/Data/newgen/output/targeted \
   --colored-root /home/ssaffari/Data/color-project/output-colored \
+  --colored-green-root /home/ssaffari/Data/color-project/output-green-colored \
   --output /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1 \
   --release-id excavision-master-v1 \
   --resume
@@ -119,3 +123,18 @@ partitions after interruption.
 
 To correct or refresh selected adapters without rescanning the rest, combine
 `--resume` with `--rebuild-sources`, followed by one or more source names.
+
+## Reconstructing the curated scale family
+
+```bash
+python data/foundations/qwen/scripts/build_curated_subsets.py \
+  --master-release /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1 \
+  --curated-root /home/ssaffari/Data/AUTCONS-II/cvpr2/curated_v4_rank_neutral \
+  --colored-root /home/ssaffari/Data/color-project/output-colored \
+  --colored-green-root /home/ssaffari/Data/color-project/output-green-colored \
+  --output /home/ssaffari/Data/foundations/qwen/releases/excavision-master-v1/subsets/curated_v4_rank_neutral
+```
+
+The builder canonicalizes historical union aliases, removes duplicate raw
+samples by `sample_id`, backfills from the next-ranked unique sample, validates
+all raw modalities, and emits strictly nested 5K/10K/20K/50K/100K manifests.
