@@ -1,0 +1,88 @@
+{
+  "requested": 10,
+  "built": 10,
+  "valid": 10,
+  "invalid": 0,
+  "samples": [
+    {
+      "sample_id": "processed__2025-06-08_17-51-28_Excavator_4_cam32_frame0006",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 3,
+      "source": "excavision_processed"
+    },
+    {
+      "sample_id": "processed__2025-06-09_23-12-44_Excavator_1_cam56_frame0019",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 2,
+      "source": "excavision_processed"
+    },
+    {
+      "sample_id": "processed__2025-09-05_04-23-37_Excavator_6_cam5_frame0027",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 1,
+      "source": "excavision_processed"
+    },
+    {
+      "sample_id": "processed__2025-09-03_10-05-33_Excavator_1_cam41_frame0001",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 1,
+      "source": "excavision_processed"
+    },
+    {
+      "sample_id": "newgen_r1__2025-12-14_22-01-21_Excavator_5_cam36_frame0009",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 1,
+      "source": "newgen_targeted"
+    },
+    {
+      "sample_id": "newgen_r2__2025-12-19_11-20-30_Excavator_1_cam6_frame0011",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 8,
+      "source": "newgen_targeted"
+    },
+    {
+      "sample_id": "newgen_r3__2025-12-23_18-40-43_Excavator_3_cam20_frame0016",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 1,
+      "source": "newgen_targeted"
+    },
+    {
+      "sample_id": "colored__Ex11__2026-03-04_18-08-12_s000__Excavator_3_cam6_frame0005",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 1,
+      "source": "color_project"
+    },
+    {
+      "sample_id": "colored__Ex10__2026-03-04_16-50-39_s000__Excavator_3_cam23_frame0015",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 3,
+      "source": "color_project"
+    },
+    {
+      "sample_id": "colored__Ex11__2026-03-04_18-08-12_s000__Excavator_1_cam18_frame0029",
+      "status": "valid",
+      "errors": [],
+      "warnings": [],
+      "instances": 3,
+      "source": "color_project"
+    }
+  ]
+}

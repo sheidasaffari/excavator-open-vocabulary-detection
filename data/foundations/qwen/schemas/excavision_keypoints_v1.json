@@ -1,0 +1,406 @@
+{
+  "schema_name": "excavision_keypoints",
+  "schema_version": "1.0.0-pilot",
+  "landmark_representation": "Blender pose-bone head",
+  "root_landmark": {
+    "index": 0,
+    "raw_name": "Bone.003-B"
+  },
+  "coordinate_conventions": {
+    "world_xyz": "Blender world coordinates",
+    "camera_xyz": "Blender camera coordinates; visible points normally have negative Z",
+    "root_relative_xyz": "world_xyz minus landmark 0; not scale-normalized"
+  },
+  "visibility": {
+    "2": "in frame and ray-visible on expected component",
+    "1": "in frame and self-occluded",
+    "0_nonzero_xy": "in frame and externally occluded or unresolved/no expected hit",
+    "0_zero_xy": "outside frame; individual ray state unavailable in the 2D record (legacy aggregates may still include it)"
+  },
+  "landmarks": [
+    {
+      "index": 0,
+      "raw_name": "Bone.003-B",
+      "semantic_name": "upper_structure_reference_center",
+      "stable_component": "main_body",
+      "landmark_role": "reference",
+      "coincident_group": null
+    },
+    {
+      "index": 1,
+      "raw_name": "Track-001",
+      "semantic_name": "undercarriage_center_front_right_branch",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "undercarriage_branch_origin"
+    },
+    {
+      "index": 2,
+      "raw_name": "Track-001.001",
+      "semantic_name": "track_front_right_upper_corner",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 3,
+      "raw_name": "Track-002",
+      "semantic_name": "undercarriage_center_front_left_branch",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "undercarriage_branch_origin"
+    },
+    {
+      "index": 4,
+      "raw_name": "Track-002.001",
+      "semantic_name": "track_front_left_upper_corner",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 5,
+      "raw_name": "Track-002.002",
+      "semantic_name": "track_front_left_lower_corner",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 6,
+      "raw_name": "Track-003",
+      "semantic_name": "undercarriage_center_rear_left_branch",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "undercarriage_branch_origin"
+    },
+    {
+      "index": 7,
+      "raw_name": "Track-003.001",
+      "semantic_name": "track_rear_left_upper_corner",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 8,
+      "raw_name": "Track-003.002",
+      "semantic_name": "track_rear_left_lower_corner",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 9,
+      "raw_name": "Track-004",
+      "semantic_name": "undercarriage_center_rear_right_branch",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "undercarriage_branch_origin"
+    },
+    {
+      "index": 10,
+      "raw_name": "Track-004.001",
+      "semantic_name": "track_rear_right_upper_corner",
+      "stable_component": "tracks",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 11,
+      "raw_name": "Bone.002-A",
+      "semantic_name": "stick_bucket_pivot",
+      "stable_component": "bucket",
+      "landmark_role": "articulation_joint",
+      "coincident_group": null
+    },
+    {
+      "index": 12,
+      "raw_name": "Bucket-001",
+      "semantic_name": "bucket_profile_anchor_01",
+      "stable_component": "bucket",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "bucket_profile_control_01"
+    },
+    {
+      "index": 13,
+      "raw_name": "Bucket-002",
+      "semantic_name": "bucket_profile_anchor_02",
+      "stable_component": "bucket",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 14,
+      "raw_name": "Bucket-003",
+      "semantic_name": "bucket_profile_anchor_03",
+      "stable_component": "bucket",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 15,
+      "raw_name": "Arm1-To-Body",
+      "semantic_name": "boom_lift_cylinder_base_anchor",
+      "stable_component": "main_arm",
+      "landmark_role": "hydraulic_anchor",
+      "coincident_group": "boom_body_mount"
+    },
+    {
+      "index": 16,
+      "raw_name": "Bucket-005",
+      "semantic_name": "bucket_control_target",
+      "stable_component": "bucket",
+      "landmark_role": "control_anchor",
+      "coincident_group": "bucket_profile_control_01"
+    },
+    {
+      "index": 17,
+      "raw_name": "Arm2-To-Body",
+      "semantic_name": "boom_base_pivot",
+      "stable_component": "main_arm",
+      "landmark_role": "articulation_joint",
+      "coincident_group": "boom_body_mount"
+    },
+    {
+      "index": 18,
+      "raw_name": "Arm2",
+      "semantic_name": "boom_stick_pivot",
+      "stable_component": "middle_arm",
+      "landmark_role": "articulation_joint",
+      "coincident_group": null
+    },
+    {
+      "index": 19,
+      "raw_name": "Arm1-001",
+      "semantic_name": "stick_cylinder_rod_anchor",
+      "stable_component": "main_arm",
+      "landmark_role": "hydraulic_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 20,
+      "raw_name": "Arm2-002",
+      "semantic_name": "bucket_cylinder_base_anchor_on_stick",
+      "stable_component": "middle_arm",
+      "landmark_role": "hydraulic_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 21,
+      "raw_name": "Arm2-To-Bucket",
+      "semantic_name": "bucket_linkage_anchor_on_stick",
+      "stable_component": "middle_arm",
+      "landmark_role": "linkage_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 22,
+      "raw_name": "Bucket-004",
+      "semantic_name": "bucket_linkage_joint",
+      "stable_component": "bucket",
+      "landmark_role": "linkage_joint",
+      "coincident_group": "bucket_linkage_knuckle"
+    },
+    {
+      "index": 23,
+      "raw_name": "Arm2-001",
+      "semantic_name": "bucket_cylinder_rod_anchor",
+      "stable_component": "middle_arm",
+      "landmark_role": "hydraulic_anchor",
+      "coincident_group": "bucket_linkage_knuckle"
+    },
+    {
+      "index": 24,
+      "raw_name": "Arm1-002",
+      "semantic_name": "stick_cylinder_base_anchor_on_boom",
+      "stable_component": "main_arm",
+      "landmark_role": "hydraulic_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 25,
+      "raw_name": "Arm1-003",
+      "semantic_name": "boom_lift_cylinder_rod_anchor_on_boom",
+      "stable_component": "main_arm",
+      "landmark_role": "hydraulic_anchor",
+      "coincident_group": "boom_profile_base"
+    },
+    {
+      "index": 26,
+      "raw_name": "Arm1-004",
+      "semantic_name": "boom_profile_anchor_01",
+      "stable_component": "main_arm",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "boom_profile_base"
+    },
+    {
+      "index": 27,
+      "raw_name": "Arm1-005",
+      "semantic_name": "boom_profile_anchor_02",
+      "stable_component": "main_arm",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 28,
+      "raw_name": "InnerBody",
+      "semantic_name": "body_boom_mount_center",
+      "stable_component": "main_body",
+      "landmark_role": "mount_anchor",
+      "coincident_group": "boom_body_mount"
+    },
+    {
+      "index": 29,
+      "raw_name": "Body-001",
+      "semantic_name": "upper_body_rear_center_lower",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 30,
+      "raw_name": "Body-002",
+      "semantic_name": "upper_body_rear_center_mid",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 31,
+      "raw_name": "Body-003",
+      "semantic_name": "upper_body_rear_center_upper",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 32,
+      "raw_name": "Body-004",
+      "semantic_name": "upper_body_rear_center_top",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "upper_body_rear_center_top"
+    },
+    {
+      "index": 33,
+      "raw_name": "Body-005",
+      "semantic_name": "cab_roof_rear_inboard_corner",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "cab_roof_rear_inboard"
+    },
+    {
+      "index": 34,
+      "raw_name": "Body-006",
+      "semantic_name": "cab_roof_front_inboard_corner",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 35,
+      "raw_name": "Body-007",
+      "semantic_name": "cab_roof_rear_inboard_corner_duplicate",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "cab_roof_rear_inboard"
+    },
+    {
+      "index": 36,
+      "raw_name": "Body-008",
+      "semantic_name": "cab_roof_rear_inboard_branch_anchor",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "cab_roof_rear_inboard"
+    },
+    {
+      "index": 37,
+      "raw_name": "Body-009",
+      "semantic_name": "cab_roof_rear_outboard_corner",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "cab_roof_rear_outboard"
+    },
+    {
+      "index": 38,
+      "raw_name": "Body-010",
+      "semantic_name": "cab_roof_rear_outboard_branch_anchor",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "cab_roof_rear_outboard"
+    },
+    {
+      "index": 39,
+      "raw_name": "Body-011",
+      "semantic_name": "cab_roof_front_outboard_corner",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 40,
+      "raw_name": "Body-012",
+      "semantic_name": "upper_body_rear_center_top_left_branch",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "upper_body_rear_center_top"
+    },
+    {
+      "index": 41,
+      "raw_name": "Body-013",
+      "semantic_name": "upper_body_rear_left_upper_corner",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 42,
+      "raw_name": "Body-014",
+      "semantic_name": "upper_body_rear_left_lower_corner",
+      "stable_component": "driver_cabin",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 43,
+      "raw_name": "Body-015",
+      "semantic_name": "upper_body_rear_center_top_right_branch",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "upper_body_rear_center_top"
+    },
+    {
+      "index": 44,
+      "raw_name": "Body-016",
+      "semantic_name": "upper_body_rear_right_upper_corner",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "upper_body_rear_right_upper"
+    },
+    {
+      "index": 45,
+      "raw_name": "Body-017",
+      "semantic_name": "upper_body_rear_right_lower_corner",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    },
+    {
+      "index": 46,
+      "raw_name": "Body-018",
+      "semantic_name": "upper_body_rear_right_branch_anchor",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": "upper_body_rear_right_upper"
+    },
+    {
+      "index": 47,
+      "raw_name": "Body-019",
+      "semantic_name": "upper_body_front_right_upper_corner",
+      "stable_component": "main_body",
+      "landmark_role": "contour_anchor",
+      "coincident_group": null
+    }
+  ]
+}
