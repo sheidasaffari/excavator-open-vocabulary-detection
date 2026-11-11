@@ -54,6 +54,57 @@ wheel loaders, isolated attachments, and other confusing objects.
    sensitivity but do not supply the negative evidence needed to sharpen the
    excavator/non-excavator boundary.
 
+## New comprehensive screen: learning the excavator boundary
+
+The positive-only study above motivated a more fundamental question: before adding
+Excavision, what real supervision and what adaptation depth are required to teach an
+open-vocabulary detector that a backhoe loader, dozer, crane, or wheel loader is
+**not** an excavator? We ran a controlled 14-checkpoint development screen with
+YOLOE-v8-S and MM-Grounding-DINO-T. Training budgets were matched while negative
+images were represented either as background-only examples or as explicitly boxed
+and named confuser classes. We separately varied how much of each architecture was
+allowed to learn.
+
+The central result is that realistic negative images sharply improve category
+specificity, but the best implementation is model-dependent. Background-negative
+supervision preserved AP50:95 within 0.02 of the best representation arm for both
+families while substantially reducing false positives. YOLOE required PAN+head
+adaptation to obtain its strongest sensitivity/specificity trade-off; Grounding
+DINO required at least its fusion/detector scope. Low-floor oracle recall remained
+high—roughly 0.94–0.96 for YOLOE and 0.97–0.99 for Grounding DINO—showing that the
+main issue is candidate scoring and boundary separation rather than a complete lack
+of localized proposals.
+
+### YOLOE-v8-S
+
+YOLOE PAN+head reached AP50:95 0.733, AP50 0.881, and recall 0.817 at threshold
+0.25, with only 0.018 negative image-FPR when matched to 0.70 MOCS recall. Full
+detector adaptation gained only 0.006 AP50:95, used substantially more trainable
+parameters, and was slightly worse in recall and matched specificity. PAN+head is
+therefore the provisional development scope.
+
+![YOLOE negative-supervision and adaptation-scope screen](results/negative_supervision_phase1/yoloe_v8s_tradeoffs.png)
+
+### MM-Grounding-DINO-T
+
+For Grounding DINO, positive-only fusion adaptation reached AP50:95 0.841 but had
+0.325 negative image-FPR at matched 0.70 recall. Background-negative adaptation
+retained AP50:95 0.833 while reducing matched-recall FPR to 0.001. A configuration
+audit also found that the nominal vision+fusion and full runs had silently inherited
+the fusion freeze map; they are disclosed as repeated fusion executions, not used as
+architectural evidence, and the launcher has been corrected for the required reruns.
+
+![Grounding DINO negative-supervision and valid adaptation-scope screen](results/negative_supervision_phase1/grounding_dino_t_tradeoffs.png)
+
+These are one-seed development findings, not final held-out claims. No Excavision
+image was used in this phase. The study establishes the negative-aware real-data
+baseline needed for the next question: whether controlled synthetic positives add
+difficult-positive coverage or data efficiency after the category boundary has
+already been learned. See the
+[full experimental explanation](docs/negative_supervision_phase1.md),
+[aggregate results](results/negative_supervision_phase1/), and
+[reproducible code](scripts/negative_supervision/).
+
 ## Zero-shot benchmark
 
 MOCS was used as the development set; ACID and CIS remained held-out. AP is

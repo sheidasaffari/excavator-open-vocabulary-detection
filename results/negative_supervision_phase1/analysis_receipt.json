@@ -1,0 +1,16 @@
+{
+  "analysis_protocol": "locked before ACID-development inference",
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20261111,
+  "inputs": {
+    "/mnt/data/foundational/journal_study/analysis_phase1/eval_combined.json": "06025beceff2e3c9c40261579611ef5108a6a2c2c432b531bd258d34bfcd4901",
+    "/mnt/data/foundational/journal_study/analysis_phase1/yoloe_predictions.json": "e9b8e8a21bd1ed4db355f1005cf7a7c4ede728cadd4e724879f700975bbdd51e",
+    "/mnt/data/foundational/journal_study/analysis_phase1/gdino_predictions.json": "33bd700e416142f40c178395276dcce3f6409433d65e5898c09417b56c5abb2e"
+  },
+  "held_out_not_used": [
+    "CIS",
+    "frozen positive control",
+    "frozen external confuser",
+    "controlled occlusion"
+  ]
+}

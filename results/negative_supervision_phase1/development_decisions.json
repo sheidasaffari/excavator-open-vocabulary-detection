@@ -1,0 +1,30 @@
+[
+  {
+    "decision": "negative_representation",
+    "family": "YOLOE-v8s",
+    "best_ap50_95": 0.4599040511098153,
+    "frozen_configuration": "n1_alignment",
+    "reason": "within 0.02 AP50:95 of best and within 5 percentage points of best FPR at 0.70 recall; simplest retained representation"
+  },
+  {
+    "decision": "negative_representation",
+    "family": "Grounding-DINO-T",
+    "best_ap50_95": 0.8414166428319952,
+    "frozen_configuration": "n1_fusion",
+    "reason": "within 0.02 AP50:95 of best and within 5 percentage points of best FPR at 0.70 recall; simplest retained representation"
+  },
+  {
+    "decision": "adaptation_scope",
+    "family": "YOLOE-v8s",
+    "best_ap50_95": 0.7391987428060188,
+    "frozen_configuration": "n2_panhead",
+    "reason": "eligible under locked AP and matched-recall specificity guardrails; narrowest retained scope"
+  },
+  {
+    "decision": "adaptation_scope",
+    "family": "Grounding-DINO-T",
+    "best_ap50_95": null,
+    "frozen_configuration": null,
+    "reason": "not frozen: intended vision+fusion and full configurations inherited the base backbone/language freeze and duplicated fusion"
+  }
+]

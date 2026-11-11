@@ -1,0 +1,11 @@
+family,scope,total_parameters,updated_parameters,updated_fraction,status
+YOLOE-v8s,alignment,14763350,3252742,0.22032,valid
+YOLOE-v8s,terminal,11139470,3870,0.000347,valid; fixed-vocabulary head
+YOLOE-v8s,panhead,14763350,7832534,0.53055,valid
+YOLOE-v8s,full,14763350,12912246,0.87462,valid detector scope
+Grounding-DINO-T,head,172914717,1127715,0.006522,valid
+Grounding-DINO-T,fusion,172914717,36502563,0.211102,valid
+Grounding-DINO-T,visionfusion (actual),172914717,36502563,0.211102,invalid label: duplicated fusion due inherited config
+Grounding-DINO-T,full (actual),172914717,36502563,0.211102,invalid label: duplicated fusion due inherited config
+Grounding-DINO-T,visionfusion (intended),172914717,64023069,0.370258,not run
+Grounding-DINO-T,full (intended),172914717,172914717,1.0,not run
