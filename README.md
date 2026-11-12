@@ -1,17 +1,38 @@
 # Excavision for Open-Vocabulary Excavator Detection
 
-This study asks whether controlled synthetic data can improve the performance of
-open-vocabulary foundation detectors on a rare industrial category. We evaluated
-two widely used models, Grounding DINO and YOLO-World, on real excavator datasets
-and tested YOLO-World adaptation with multiple subsets of our one-million-image
-Excavision dataset to determine what synthetic supervision improves—and what it
-cannot fix by itself.
+This study asks whether controlled synthetic excavator data can improve
+open-vocabulary foundation detectors under real construction-domain shift. We
+first evaluated Grounding DINO and YOLO-World on source-disjoint real excavator
+images, then adapted YOLO-World with different randomly sampled subsets of
+Excavision to determine what positive-only synthetic supervision improves—and what
+it cannot fix by itself. A subsequent negative-supervision study used current
+trainable detectors, YOLOE-v8-S and MM-Grounding-DINO-T, to establish the realistic
+excavator/non-excavator boundary that must exist before synthetic positives can be
+tested as a safe complement.
 
 **Excavision** is a **1.09-million-frame multimodal synthetic benchmark dataset**
 for excavator perception, providing controlled variation in machine configuration,
 camera viewpoint, articulation, appearance, lighting, and scene conditions together
 with aligned annotations. The dataset can be searched interactively by render
 condition in the [Excavision Hugging Face Explorer](https://huggingface.co/spaces/Sheida1/excavision-explorer).
+
+## Adaptation data and experimental logic
+
+The repository contains two completed adaptation phases and one pre-registered
+next phase. Their data must not be conflated:
+
+| Phase | Training data | Selection/evaluation data | Purpose |
+|---|---|---|---|
+| **Positive-only synthetic adaptation** | Random Excavision subsets of 5K, 10K, 20K, 50K, and 100K images. Every training image contains a labelled excavator; no real image or hard-negative class is used for adaptation. | MOCS is used for subset-size and checkpoint selection. After freezing Random-5K, the checkpoints are applied unchanged to CIS, the independent 127-image positive control, and the frozen 110-image confuser set. | Isolate what single-class synthetic positives alone contribute: improved excavator sensitivity, proposal scoring, and data efficiency. |
+| **Real boundary-supervision screen** | Exact-hash-clean ACID training partitions containing real excavator positives and nine related construction-equipment classes: backhoe loader, cement truck, compactor, bulldozer, dump truck, grader, mobile crane, tower crane, and wheel loader. Arms compare positive-only supervision, empty/background negatives, and explicitly boxed and named confusers. **No Excavision image is used in this phase.** | MOCS positives and the ACID negative development partition are used only for development analysis. CIS, the positive control, and the external confuser set are not used for scope selection. | Determine which negative representation and trainable model scope can teach a sharper excavator/non-excavator boundary without sacrificing positive detection. |
+| **Combined Excavision study — next phase** | A fixed four-stream mixture: 25% real excavator positives, 25% close real confusers, 25% other real negatives/backgrounds, and 25% experimental positives. The experimental stream compares augmented real positives with random, external-occlusion-targeted, anti-targeted, and distribution-matched Excavision subsets. | All choices are made on development data; CIS and frozen confirmation sets remain untouched until scopes, arms, thresholds, and checkpoints are locked. | Test whether Excavision improves difficult-positive coverage or real-label efficiency **after** realistic negative supervision has established category specificity. |
+
+This sequencing is deliberate. Excavision supplies controlled positive variation in
+viewpoint, articulation, scale, lighting, appearance, and external occlusion, but it
+does not contain realistic loaders, backhoes, bulldozers, cranes, isolated
+attachments, or equipment-free construction scenes. Consequently, the synthetic
+dataset can test positive coverage and controllability, whereas real confuser data
+is required to teach and evaluate the category boundary.
 
 The models exhibited different failure modes: Grounding DINO achieved strong
 excavator recall but frequently confused related machines and detached components,
